@@ -19,7 +19,8 @@ public class StudentRegistrationTest extends TestBase{
                 setGender("Male").
                 setPhoneNumber("7089598475").
                 setHobby("Sports").
-                setHobby("Reading").setDateOfBirth("2","11","1999").
+                setHobby("Reading").
+                setDateOfBirth("02","11","1999").
                 setCurrentAddress("Kazakhstan, Astana").
                 setSubject("English").
                 setSubject("Commerce").
