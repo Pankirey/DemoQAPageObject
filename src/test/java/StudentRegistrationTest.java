@@ -3,25 +3,33 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static utils.RandomUtils.*;
+
 public class StudentRegistrationTest extends TestBase{
 
     StudentRegistrationPage studentRegistrationPage = new StudentRegistrationPage();
+
     File file = new File("src/test/resources/picture.jpg");
 
-
+    String firstName = getRandomFirstName();
+    String lastName = getRandomLastName();
+    String email = getRandomEmail();
+    String streetAddress = getRandomAddress();
+    String gender = getGender();
 
     @Test
     void successfulSearchTest() {
+
         studentRegistrationPage.openPage().
-                setFirstName("Adil").
-                setLastName("Pankirey").
-                setEmail("pankireyadil@gmail.com").
-                setGender("Male").
+                setFirstName(firstName).
+                setLastName(lastName).
+                setEmail(email).
+                setGender(gender).
                 setPhoneNumber("7089598475").
                 setHobby("Sports").
                 setHobby("Reading").
                 setDateOfBirth("02","11","1999").
-                setCurrentAddress("Kazakhstan, Astana").
+                setCurrentAddress(streetAddress).
                 setSubject("English").
                 setSubject("Commerce").
                 uploadFile(file).
@@ -29,29 +37,29 @@ public class StudentRegistrationTest extends TestBase{
                 setCity("Delhi").
                 submit();
 
-        studentRegistrationPage.checkResult("Student Name", "Adil Pankirey").
-                checkResult("Student Email","pankireyadil@gmail.com").
-                checkResult("Gender","Male").
+        studentRegistrationPage.checkResult("Student Name", firstName +' '+lastName).
+                checkResult("Student Email",email).
+                checkResult("Gender",gender).
                 checkResult("Mobile","7089598475").
                 checkResult("Date of Birth", "2 December,1999")
                 .checkResult("Subjects","English, Commerce").
                 checkResult("Hobbies","Sports, Reading")
                 .checkResult("Picture","picture.jpg")
-                .checkResult("Address","Kazakhstan, Astana")
+                .checkResult("Address",streetAddress)
                 .checkResult("State and City","NCR Delhi");
     }
 
     @Test
     void minSuccessfulTest(){
         studentRegistrationPage.openPage().
-                setFirstName("Adil").
-                setLastName("Pankirey").
+                setFirstName(firstName).
+                setLastName(lastName).
                 setGender("Male").
                 setPhoneNumber("8708929456").
-                setDateOfBirth("2","11","1999").
+                setDateOfBirth("02","11","1999").
                 submit();
 
-        studentRegistrationPage.checkResult("Student Name","Adil Pankirey").
+        studentRegistrationPage.checkResult("Student Name",firstName + ' ' + lastName).
                 checkResult("Gender","Male").
                 checkResult("Mobile","8708929456").
                 checkResult("Date of Birth", "2 December,1999");
