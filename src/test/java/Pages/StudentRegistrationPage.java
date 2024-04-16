@@ -4,8 +4,6 @@ import Pages.components.CalendarComponent;
 import Pages.components.ResultComponent;
 import com.codeborne.selenide.SelenideElement;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -20,8 +18,6 @@ public class StudentRegistrationPage {
             phoneNumberInput = $("#userNumber"),
             hobbiesWrapper = $("#hobbiesWrapper"),
             dateOfBirthInput = $("#dateOfBirthInput"),
-            monthOfBirth = $(".react-datepicker__month-select"),
-            yearOfBirth = $(".react-datepicker__year-select"),
             currentAddressInput =  $("#currentAddress"),
             subjectsInput = $("#subjectsInput"),
             fileInput = $("#uploadPicture"),
@@ -77,8 +73,8 @@ public class StudentRegistrationPage {
         subjectsInput.setValue(subject).pressEnter();
         return this;
     }
-    public StudentRegistrationPage uploadFile(File file){
-        fileInput.uploadFile(file);
+    public StudentRegistrationPage uploadFile(String file){
+        fileInput.uploadFromClasspath(file);
         return this;
     }
     public StudentRegistrationPage setState(String state){
